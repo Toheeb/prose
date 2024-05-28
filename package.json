@@ -1,0 +1,14 @@
+{
+  "name": "@toheeb/prose",
+  "version": "0.0.0",
+  "description": "An adaptable base stylesheet",
+  "main": "index.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CSS"
+  ],
+  "author": "Ọlaábíyi",
+  "license": "AGPL-3.0-or-later"
+}

@@ -1,0 +1,207 @@
+:root {
+  --font-family: systems-ui, sans-serif;
+  --font-size: 1em;
+  --font-scale: 1.25;
+  --font-scale-min: 1.069;
+  --font-line-height: 1.6;
+
+  --color-hue: 232;
+  --color-chroma-base: 0.015;
+  --color-chroma: var(--color-chroma-base);
+  --color-chroma-scale: 1.618;
+  --color-lightness-foreground: 45%;
+  --color-lightness-background: 99%;
+
+  --layout-space: 0.75rem;
+  --layout-width-max: 36rem;
+  --layout-indent: 1em;
+  --layout-indent-use: 0;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-lightness-foreground: 25%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-chroma: calc(var(--color-chroma-base) * var(--color-chroma-scale));
+    --color-lightness-foreground: 99%;
+    --color-lightness-background: 35%;
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --color-lightness-background: 15%;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+
+  background-color: oklch(
+    var(--color-lightness-background) var(--color-chroma) var(--color-hue)
+  );
+  color: oklch(
+    var(--color-lightness-foreground)
+      calc(var(--color-chroma) * var(--color-chroma-scale)) var(--color-hue)
+  );
+}
+
+
+h1, hgroup:has(h1) {
+  --heading-level: 1;
+}
+
+h2, hgroup:has(h2) {
+  --heading-level: 2;
+}
+
+h3, hgroup:has(h3) {
+  --heading-level: 3;
+}
+
+h4, hgroup:has(h4) {
+  --heading-level: 4;
+}
+
+h5, hgroup:has(h5) {
+  --heading-level: 5;
+}
+
+h6, hgroup:has(h6) {
+  --heading-level: 6;
+}
+
+h1, hgroup:has(h1),
+h2, hgroup:has(h2),
+h3, hgroup:has(h3),
+h4, hgroup:has(h4),
+h5, hgroup:has(h5),
+h6, hgroup:has(h6) {
+  --font-size-heading-min: var(--font-size) * pow(var(--font-scale-min), 7 - var(--heading-level));
+  --font-size-heading-max: var(--font-size) * pow(var(--font-scale), 7 - var(--heading-level));
+  --font-size-heading-quad: (var(--font-size-heading-min) + var(--font-size-heading-max) ) / 4;
+  --font-size-heading: clamp(var(--font-size-heading-min), var(--font-size-heading-quad) + 3vw , var(--font-size-heading-max));
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: var(--font-size-heading);
+  max-width: var(--layout-width-max);
+  padding: calc((1 - var(--layout-indent-use)) * (var(--layout-space) / 2))
+    calc(var(--layout-space) * 2);
+  margin: 0 auto;
+}
+
+hgroup:has(h1),
+hgroup:has(h2),
+hgroup:has(h3),
+hgroup:has(h4),
+hgroup:has(h5),
+hgroup:has(h6) {
+  margin: var(--font-size-heading) auto calc(.25 * var(--font-size-heading));
+}
+
+h1:not(hgroup > h1),
+h2:not(hgroup > h2),
+h3:not(hgroup > h3),
+h4:not(hgroup > h4),
+h5:not(hgroup > h5),
+h6:not(hgroup > h6) {
+  margin: 1em auto 0.25em;
+}
+
+
+p {
+  margin: 0 auto;
+  font-size: var(--font-size);
+  line-height: var(--font-line-height);
+  text-indent: calc(var(--layout-indent) * var(--layout-indent-use));
+}
+
+/* Remove indent from first paragraph of non-div element. Since div is for stylistic purposes  */
+p:first-of-type:not(div > p:first-of-type) {
+  text-indent: 0;
+}
+
+p {
+  padding: calc((1 - var(--layout-indent-use)) * (var(--layout-space) / 2))
+    calc(var(--layout-space) * 2);
+  max-width: var(--layout-width-max);
+}
+
+ul,
+ol {
+  max-width: var(--layout-width-max);
+  margin: auto;
+  padding: 0  calc(var(--layout-space) * 2);
+}
+
+:is(ul, ol) :is(ul, ol) {
+  /* margin-inline-start: 1em; */
+  padding-inline-end: 0;
+}
+
+li > p {
+
+  /* margin inline negates padding-inline of p */
+  margin: 0 calc(var(--layout-space) * -2);
+}
+
+figure,
+address {
+  margin: var(--layout-space) 0;
+}
+
+figcaption {
+  font-size: .875em;
+}
+
+img {
+  max-width: 100%;
+}
+
+:where(a[href]) {
+  color: inherit;
+  text-decoration: none;
+  background: none;
+}
+
+:where(a[href]:hover) {
+  text-decoration: underline;
+  color: #000;
+}
+
+:where(a[href])::after {
+  --link-cue-size: 0.75em;
+
+  content: "";
+
+  display: inline-block;
+  width: var(--link-cue-size);
+  height: var(--link-cue-size);
+  vertical-align: top;
+
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="7" y1="17" x2="17" y2="7"%3E%3C/line%3E%3Cpolyline points="7 7 17 7 17 17"%3E%3C/polyline%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-size: var(--link-cue-size);
+}
+
+:where(a[href^="#"])::after {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"%3E%3C/path%3E%3C/svg%3E');
+}
+
+:where(a[href="#"])::after {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="12" y1="19" x2="12" y2="5"%3E%3C/line%3E%3Cpolyline points="5 12 12 5 19 12"%3E%3C/polyline%3E%3C/svg%3E');
+}
+
+:where(a[href^="#"][aria-current="page"])::after {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" transform="rotate(180)" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="12" y1="19" x2="12" y2="5"%3E%3C/line%3E%3Cpolyline points="5 12 12 5 19 12"%3E%3C/polyline%3E%3C/svg%3E');
+}
+
+:where(a[href^="/"])::after {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="5" y1="12" x2="19" y2="12"%3E%3C/line%3E%3Cpolyline points="12 5 19 12 12 19"%3E%3C/polyline%3E%3C/svg%3E');
+}
