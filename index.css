@@ -173,11 +173,14 @@ img {
   color: inherit;
   text-decoration: none;
   background: none;
+
+  /* outgoing links */
+  --anchor-icon: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgb(0,0,0)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="7" y1="17" x2="17" y2="7"%3E%3C/line%3E%3Cpolyline points="7 7 17 7 17 17"%3E%3C/polyline%3E%3C/svg%3E');
+
 }
 
 :where(a[href]:hover) {
   text-decoration: underline;
-  color: #000;
 }
 
 :where(a[href])::after {
@@ -190,23 +193,26 @@ img {
   height: var(--link-cue-size);
   vertical-align: top;
 
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="7" y1="17" x2="17" y2="7"%3E%3C/line%3E%3Cpolyline points="7 7 17 7 17 17"%3E%3C/polyline%3E%3C/svg%3E');
+  
   background-repeat: no-repeat;
   background-size: var(--link-cue-size);
+  background-color: currentColor;
+  mask: var(--anchor-icon);
+  -webkit-mask: var(--anchor-icon);
 }
 
 :where(a[href^="#"])::after {
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"%3E%3C/path%3E%3C/svg%3E');
+  --anchor-icon: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"%3E%3C/path%3E%3C/svg%3E');
 }
 
 :where(a[href="#"])::after {
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="12" y1="19" x2="12" y2="5"%3E%3C/line%3E%3Cpolyline points="5 12 12 5 19 12"%3E%3C/polyline%3E%3C/svg%3E');
+  --anchor-icon: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="12" y1="19" x2="12" y2="5"%3E%3C/line%3E%3Cpolyline points="5 12 12 5 19 12"%3E%3C/polyline%3E%3C/svg%3E');
 }
 
 :where(a[href^="#"][aria-current="page"])::after {
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" transform="rotate(180)" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="12" y1="19" x2="12" y2="5"%3E%3C/line%3E%3Cpolyline points="5 12 12 5 19 12"%3E%3C/polyline%3E%3C/svg%3E');
+  --anchor-icon: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" transform="rotate(180)" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="12" y1="19" x2="12" y2="5"%3E%3C/line%3E%3Cpolyline points="5 12 12 5 19 12"%3E%3C/polyline%3E%3C/svg%3E');
 }
 
 :where(a[href^="/"])::after {
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="5" y1="12" x2="19" y2="12"%3E%3C/line%3E%3Cpolyline points="12 5 19 12 12 19"%3E%3C/polyline%3E%3C/svg%3E');
+  --anchor-icon: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cline x1="5" y1="12" x2="19" y2="12"%3E%3C/line%3E%3Cpolyline points="12 5 19 12 12 19"%3E%3C/polyline%3E%3C/svg%3E');
 }
