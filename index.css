@@ -115,22 +115,27 @@ h6:not(hgroup > h6) {
 }
 
 
-p {
+p, pre {
   margin: 0 auto;
   font-size: var(--font-size);
   line-height: var(--font-line-height);
+  padding: calc((1 - var(--layout-indent-use)) * (var(--layout-space) / 2))
+    calc(var(--layout-space) * 2);
+  max-width: var(--layout-width-max);
+}
+
+pre {
+  /* Stops the limitation of font size to 13px. https://stackoverflow.com/questions/73776521/ */
+  font-family: 'Courier New', Courier, monospace;
+}
+
+p {
   text-indent: calc(var(--layout-indent) * var(--layout-indent-use));
 }
 
 /* Remove indent from first paragraph of non-div element. Since div is for stylistic purposes  */
 p:first-of-type:not(div > p:first-of-type) {
   text-indent: 0;
-}
-
-p {
-  padding: calc((1 - var(--layout-indent-use)) * (var(--layout-space) / 2))
-    calc(var(--layout-space) * 2);
-  max-width: var(--layout-width-max);
 }
 
 ul,
