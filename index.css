@@ -128,6 +128,7 @@ p, pre {
 pre {
   /* Stops the limitation of font size to 13px. https://stackoverflow.com/questions/73776521/ */
   font-family: 'Courier New', Courier, monospace;
+  overflow-x: auto;
 }
 
 p {
