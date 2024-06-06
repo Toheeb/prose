@@ -54,6 +54,7 @@ body {
 
 h1, hgroup:has(h1) {
   --heading-level: 1;
+  --heading-margin-top-addend: 1ex;
 }
 
 h2, hgroup:has(h2) {
@@ -102,7 +103,7 @@ hgroup:has(h3),
 hgroup:has(h4),
 hgroup:has(h5),
 hgroup:has(h6) {
-  margin: var(--font-size-heading) auto calc(.25 * var(--font-size-heading));
+  margin: calc(var(--font-size-heading) + var(--heading-margin-top-addend, 0ex)) auto calc(.1 * var(--font-size-heading));
 }
 
 h1:not(hgroup > h1),
@@ -111,7 +112,7 @@ h3:not(hgroup > h3),
 h4:not(hgroup > h4),
 h5:not(hgroup > h5),
 h6:not(hgroup > h6) {
-  margin: 1em auto 0.25em;
+  margin: calc(1em + var(--heading-margin-top-addend, 0ex)) auto 0.1em;
 }
 
 
