@@ -1,6 +1,6 @@
 {
   "name": "@toheeb/prose",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An adaptable base stylesheet",
   "main": "index.css",
   "scripts": {
