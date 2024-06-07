@@ -116,7 +116,7 @@ h6:not(hgroup > h6) {
 }
 
 
-p, pre {
+p, pre, summary {
   margin: 0 auto;
   font-size: var(--font-size);
   line-height: var(--font-line-height);
@@ -140,6 +140,11 @@ p:first-of-type:not(div > p:first-of-type) {
   text-indent: 0;
 }
 
+
+summary {
+  text-indent: -1em;
+}
+
 ul,
 ol {
   max-width: var(--layout-width-max);
@@ -153,7 +158,6 @@ ol {
 }
 
 li > p {
-
   /* margin inline negates padding-inline of p */
   margin: 0 calc(var(--layout-space) * -2);
 }
